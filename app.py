@@ -1,8 +1,4 @@
-import os
-
 import streamlit as st
-from streamlit_chat import message
-
 from PyPDF2 import PdfReader
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
@@ -39,7 +35,7 @@ st.session_state.selected_doc = st.selectbox("Please select the article:", ("A P
                                                                             "Cataloging Prompt Patterns to Enhance the Discipline of Prompt Engineering",
                                                                             "Python book",
                                                                             "JS book",
-                                                                            "KavehZabihi"))
+                                                                            "Data Leakage"))
 
 # updating the session for the selected pdf
 pdf_path = "./docs/" + st.session_state.selected_doc + ".pdf"
@@ -89,13 +85,13 @@ if pdf_reader:
         else:
             st.header("from the book/article")
             st.write(answer)
-            # st.write(response)
-            st.header("from text-davinci")
-            # Prompting the language model for the examples
-            example_answer = llm("provide an example of this:" + answer)
-            # providing code if the python book is selected
-            if st.session_state.selected_doc == "Python book":
-                st.write(example_answer)
-                st.code(example_answer)
+            # # st.write(response)
+            # st.header("from text-davinci")
+            # # Prompting the language model for the examples
+            # example_answer = llm("provide an example of this:" + answer)
+            # # providing code if the python book is selected
+            # if st.session_state.selected_doc == "Python book":
+            #     st.write(example_answer)
+            #     st.code(example_answer)
 
-            st.write(example_answer)
+            # st.write(example_answer)
