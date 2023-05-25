@@ -29,13 +29,10 @@ st.write("""Large Language Models (LLMs) are highly useful in providing guidance
 # Select documenation
 st.subheader("Let's play with the LLM")
 
-st.session_state.selected_doc = st.selectbox("Please select the article:", ("A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT",
-                                                                            "Example of ChatGPT",
-                                                                            "Large Language Models in the Workplace",
-                                                                            "Cataloging Prompt Patterns to Enhance the Discipline of Prompt Engineering",
-                                                                            "Python book",
-                                                                            "JS book",
-                                                                            "Data Leakage"))
+st.session_state.selected_doc = st.selectbox("Please select the article:", ("streamlit app doc",
+                                                                            "Data Leakage",
+                                                                            "control engineering",
+                                                                            "React"))
 
 # updating the session for the selected pdf
 pdf_path = "./docs/" + st.session_state.selected_doc + ".pdf"
@@ -76,6 +73,7 @@ llm = OpenAI(temperature=0.5)
 # Prompting the PDF
 if pdf_reader:
     if prompt:
+        # prompt = prompt + " And at least provide 200 words"
         search = docsearch.similarity_search(prompt)
         answer = chain.run(input_documents=search, question=prompt)
         # response = llm(prompt)
